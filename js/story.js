@@ -1,186 +1,376 @@
 export const STORY = {
-  id: 'dam-intro-v03',
-  start: 'intro-1',
+  id: 'dam-microcredential-v01',
+  start: 'opening',
+  metadata: {
+    estimatedTime: '12-15 minutes',
+    version: 'microcredential',
+    totalChallenges: 4,
+    maxScore: 8
+  },
   nodes: [
-    // --- SETUP (Intro) ---
+    // ═══════════════════════════════════════════════════════════
+    // OPENING (3 minutes)
+    // ═══════════════════════════════════════════════════════════
+    
     {
-      id: 'intro-1',
-      title: 'Start Here',
-      text: `<p>It’s prep day. You’re updating your LMS and pulling in last semester’s materials. Accessibility is on the list, but it’s felt abstract and time-consuming.</p>
-             <p>Today you’ll take a practical, bite-sized pass to remove a few barriers right away.</p>`,
+      id: 'opening',
+      title: 'Sunday Evening',
+      text: `<p>It's Sunday evening. You're prepping for tomorrow's class when an email notification catches your eye:</p>
+             <blockquote style="border-left: 3px solid #666; padding-left: 1em; margin: 1em 0; font-style: italic;">
+             <strong>Subject: Trouble accessing course materials</strong><br><br>
+             "Professor, I tried to complete the Week 2 assignment but couldn't access the PDF syllabus with my screen reader. I had to ask my roommate to read it to me. Is there another way you could share these materials?"<br>
+             — Marcus
+             </blockquote>
+             <p>Your stomach drops. This isn't the first time you've heard this. And with the dean's accessibility review scheduled for next month, you can't put this off any longer.</p>`,
       choices: [
-        { text: 'Okay — what’s the context for this check?', next: 'intro-2' },
-        { text: 'Skip setup and jump to the menu', next: 'menu' }
+        { text: 'Continue', next: 'matrix-intro' }
       ]
     },
+
     {
-      id: 'intro-2',
-      title: 'What you’re optimizing for',
-      text: `<ul>
-               <li><strong>Students using keyboard only</strong> (no mouse).</li>
-               <li><strong>Students using screen readers</strong> who rely on structure and alt text.</li>
-               <li><strong>Students on mobile</strong> or low-bandwidth connections.</li>
+      id: 'matrix-intro',
+      title: 'A Guide Appears',
+      text: `<p>As you stare at your course site, wondering where to begin, a notification appears:</p>
+             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5em; border-radius: 8px; margin: 1em 0;">
+             <p style="margin: 0;"><strong>The Digital Accessibility Matrix</strong></p>
+             <p style="margin: 0.5em 0 0 0;">"I can help you help Marcus. In the next 15 minutes, I'll guide you through the four most critical accessibility barriers—one fix for each principle of accessible design."</p>
+             </div>
+             <p><strong>The four principles (POUR):</strong></p>
+             <ul>
+               <li><strong>Perceivable</strong> - Can students with different abilities perceive your content?</li>
+               <li><strong>Operable</strong> - Can students navigate without a mouse?</li>
+               <li><strong>Understandable</strong> - Is your content clear and predictable?</li>
+               <li><strong>Robust</strong> - Does it work across devices and technologies?</li>
              </ul>
-             <p>Small changes in the right places help everyone — not just students with accommodations.</p>`,
+             <p><strong>The Matrix:</strong> "Each fix helps real students. Let's begin."</p>`,
       choices: [
-        { text: 'Got it — how will we decide what to fix first?', next: 'intro-3' },
-        { text: 'Jump to menu', next: 'menu' }
-      ]
-    },
-    {
-      id: 'intro-3',
-      title: 'Your guide',
-      text: `<p>You’ll use the <em>Digital Accessibility Matrix</em> to pick focused actions across four areas: Perceivable, Operable, Understandable, Robust (POUR).</p>
-             <p>Pick one area to start. You can circle back and explore others anytime.</p>`,
-      choices: [
-        { text: 'Open the menu', next: 'menu' },
-        { text: 'Remind me what each section covers', next: 'intro-4' }
-      ]
-    },
-    {
-      id: 'intro-4',
-      title: 'POUR at a glance',
-      text: `<ul>
-               <li><strong>Perceivable</strong>: Captions, alt text, contrast.</li>
-               <li><strong>Operable</strong>: Keyboard access, proper headings.</li>
-               <li><strong>Understandable</strong>: Plain language, meaningful links, consistent layout.</li>
-               <li><strong>Robust</strong>: Works across devices and assistive tech.</li>
-             </ul>`,
-      choices: [ { text: 'Open the menu', next: 'menu' } ]
-    },
-
-    // --- MENU ---
-    {
-      id: 'menu',
-      title: 'Where do you want to start?',
-      text: `<p>Pick a section of the Digital Accessibility Matrix to begin. You can return here anytime.</p>`,
-      choices: [
-        { text: 'Perceivable (captions, alt text, contrast)', next: 'p-intro' },
-        { text: 'Operable (keyboard access, headings, real text)', next: 'o-intro' },
-        { text: 'Understandable (clear language, meaningful links)', next: 'u-intro' },
-        { text: 'Robust (works across devices & with AT)', next: 'r-intro' },
-        { text: 'Replay the setup', next: 'intro-1' }
+        { text: 'Start the challenges', next: 'challenge-1-perceivable' }
       ]
     },
 
-    // --- PERCEIVABLE ---
-    {
-      id: 'p-intro',
-      title: 'Perceivable: Get the basics right',
-      text: `<p>Information must be presented in ways users can perceive: captions for audio/video, alt text for images, adequate color contrast, and no info by color alone.</p>`,
-      choices: [
-        { text: 'Add captions/transcripts to Week 1 video', next: 'p-video' },
-        { text: 'Audit images and write concise alt text', next: 'p-alt' },
-        { text: 'Check color contrast & color-only cues', next: 'p-contrast' },
-        { text: 'Back to menu', next: 'menu' }
-      ]
-    },
-    { id: 'p-video', title: 'Video: captions/transcript', text: `<p>Your lecture video lacks captions. What\'s your move?</p>`,
-      choices: [
-        { text: 'Generate auto-captions, then edit for accuracy', next: 'p-done' },
-        { text: 'Provide a transcript if captions aren\'t ready yet', next: 'p-done' },
-        { text: 'Skip for now (not recommended)', next: 'p-remind' }
-      ]
-    },
-    { id: 'p-alt', title: 'Images: alternative text', text: `<p>Images need alt text that conveys purpose. Decorative images should be marked decorative.</p>`,
-      choices: [
-        { text: 'Write meaningful alt text for key diagrams', next: 'p-done' },
-        { text: 'Mark purely decorative images correctly', next: 'p-done' },
-        { text: 'Use the file name as alt text (nope)', next: 'p-remind' }
-      ]
-    },
-    { id: 'p-contrast', title: 'Color & contrast', text: `<p>Ensure 4.5:1 (normal text) / 3:1 (large text) contrast and avoid color-only meaning.</p>`,
-      choices: [
-        { text: 'Run a contrast checker and fix low-contrast text', next: 'p-done' },
-        { text: 'Add icons/patterns to supplement color cues', next: 'p-done' },
-        { text: 'Leave green/red alone (problematic)', next: 'p-remind' }
-      ]
-    },
-    { id: 'p-remind', title: 'Not quite there', text: `<p>These items are high-impact for many learners. Plan a fix soon.</p>`, choices: [ { text: 'Back to Perceivable', next: 'p-intro' }, { text: 'Menu', next: 'menu' } ] },
-    { id: 'p-done', title: 'Perceivable improvements made', text: `<p>Nice. You\'ve improved perceivability. Keep going or explore another area.</p>`, choices: [ { text: 'More in Perceivable', next: 'p-intro' }, { text: 'Menu', next: 'menu' } ] },
+    // ═══════════════════════════════════════════════════════════
+    // CHALLENGE 1: PERCEIVABLE (2 minutes)
+    // ═══════════════════════════════════════════════════════════
 
-    // --- OPERABLE ---
     {
-      id: 'o-intro', title: 'Operable: Navigate by keyboard',
-      text: `<p>Users must be able to operate content with keyboard alone. Ensure focus order, real headings, and avoid text-as-image.</p>`,
+      id: 'challenge-1-perceivable',
+      title: '👁️ Challenge 1: Perceivable',
+      text: `<div style="background: #fef3c7; padding: 1em; border-left: 3px solid #f59e0b; margin: 1em 0;">
+             <strong>Challenge 1 of 4: Perceivable</strong><br>
+             Current Score: 0/8
+             </div>
+             <p>You open your Week 1 lecture video. It's a 20-minute explanation of key concepts. There are no captions.</p>
+             <p><strong>The Matrix:</strong> "Meet Aisha—she's deaf. Without captions, she can't access this lecture. Auto-captions exist, but they're often hilariously wrong. 'Accessibility' becomes 'acessabiity.'"</p>
+             <p>"What do you do?"</p>`,
       choices: [
-        { text: 'Test Week 1 page with Tab/Shift+Tab', next: 'o-keyboard' },
-        { text: 'Convert image-of-text slides to real text', next: 'o-text' },
-        { text: 'Apply proper H1–H3 heading structure', next: 'o-headings' },
-        { text: 'Back to menu', next: 'menu' }
+        { text: 'Generate auto-captions, then edit them for accuracy', next: 'p-outcome-good' },
+        { text: 'Provide a text transcript alongside the video', next: 'p-outcome-good' },
+        { text: 'Just use auto-captions as-is', next: 'p-outcome-bad' }
       ]
     },
-    { id: 'o-keyboard', title: 'Keyboard first', text: `<p>Tab through the page. You find a focus trap in a modal.</p>`,
-      choices: [
-        { text: 'Add a close button and trap focus inside the modal with escape support', next: 'o-done' },
-        { text: 'Leave it; users can refresh (not accessible)', next: 'o-remind' }
-      ]
-    },
-    { id: 'o-text', title: 'Real text, not images', text: `<p>Scanned PDFs and slide images block keyboard/screen readers.</p>`,
-      choices: [
-        { text: 'Replace with accessible PDFs or native documents', next: 'o-done' },
-        { text: 'Keep as-is (students will struggle)', next: 'o-remind' }
-      ]
-    },
-    { id: 'o-headings', title: 'Headings that work', text: `<p>Apply semantic headings so users can navigate by heading.</p>`,
-      choices: [
-        { text: 'Use built-in H1–H3 styles instead of bolding', next: 'o-done' },
-        { text: 'Leave visual styling only (not semantic)', next: 'o-remind' }
-      ]
-    },
-    { id: 'o-remind', title: 'Not quite there', text: `<p>These changes remove major barriers for keyboard users. Circle back soon.</p>`, choices: [ { text: 'Back to Operable', next: 'o-intro' }, { text: 'Menu', next: 'menu' } ] },
-    { id: 'o-done', title: 'Operable improvements made', text: `<p>Great. Navigation is improving.</p>`, choices: [ { text: 'More in Operable', next: 'o-intro' }, { text: 'Menu', next: 'menu' } ] },
 
-    // --- UNDERSTANDABLE ---
     {
-      id: 'u-intro', title: 'Understandable: Clear & consistent',
-      text: `<p>Use plain language, consistent structure, and meaningful link text so learners know what to do and where a link goes.</p>`,
-      choices: [
-        { text: 'Rewrite instructions in plain, concise steps', next: 'u-plain' },
-        { text: 'Replace “click here” with descriptive link text', next: 'u-links' },
-        { text: 'Standardize weekly layouts for predictability', next: 'u-structure' },
-        { text: 'Back to menu', next: 'menu' }
-      ]
+      id: 'p-outcome-good',
+      title: '✓ Captions Fixed',
+      autoAdvance: 'challenge-2-operable',
+      autoAdvanceDelay: 5000,
+      text: `<p>You spend 30 minutes editing the auto-captions for accuracy.</p>
+             <div style="background: #dcfce7; border-left: 3px solid #22c55e; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix glows.</strong><br><br>
+             <strong>✓ Impact:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>Aisha can now fully engage with your lecture</li>
+             <li>3 non-native English speakers better understand the content</li>
+             <li>Students can study with sound off in noisy environments</li>
+             </ul>
+             <strong>+2 Points</strong> (2/8)
+             </div>
+             <p><em>Moving to Challenge 2: Operable...</em></p>`,
+      choices: []
     },
-    { id: 'u-plain', title: 'Plain language', text: `<p>Your Week 1 page uses long, academic sentences.</p>`,
-      choices: [
-        { text: 'Refactor into short action steps with bullets', next: 'u-done' },
-        { text: 'Leave as-is (cognitive load stays high)', next: 'u-remind' }
-      ]
-    },
-    { id: 'u-links', title: 'Meaningful links', text: `<p>Change vague link labels to clear destinations, e.g., “Download Syllabus (PDF).”</p>`,
-      choices: [
-        { text: 'Relabel links with purpose/destination', next: 'u-done' },
-        { text: 'Keep “click here” everywhere', next: 'u-remind' }
-      ]
-    },
-    { id: 'u-structure', title: 'Predictable structure', text: `<p>Make each week follow the same order: Overview → Materials → Activities → Assessments.</p>`,
-      choices: [
-        { text: 'Adopt a weekly template and stick to it', next: 'u-done' },
-        { text: 'Vary week-by-week (harder to parse)', next: 'u-remind' }
-      ]
-    },
-    { id: 'u-remind', title: 'Not quite there', text: `<p>Clarity & predictability boost success for all students. Revisit soon.</p>`, choices: [ { text: 'Back to Understandable', next: 'u-intro' }, { text: 'Menu', next: 'menu' } ] },
-    { id: 'u-done', title: 'Understandable improvements made', text: `<p>Excellent. Instructions and links now guide learners effectively.</p>`, choices: [ { text: 'More in Understandable', next: 'u-intro' }, { text: 'Menu', next: 'menu' } ] },
 
-    // --- ROBUST ---
     {
-      id: 'r-intro', title: 'Robust: Works across tech',
-      text: `<p>Content should work on multiple devices and with assistive technologies. Use built-in accessibility checkers and test across platforms.</p>`,
+      id: 'p-outcome-bad',
+      title: '⚠ Not Quite',
+      autoAdvance: 'challenge-2-operable',
+      autoAdvanceDelay: 5000,
+      text: `<p>You enable auto-captions and move on.</p>
+             <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix dims.</strong><br><br>
+             <strong>⚠ Outcome:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>The transcript reads: "Today we discuss acessabiity in higher ed you cation"</li>
+             <li>Aisha is more confused than helped</li>
+             <li>Your accessibility review flags this as non-compliant</li>
+             </ul>
+             <strong>+0 Points</strong> (0/8)
+             </div>
+             <p><em>Moving to Challenge 2: Operable...</em></p>`,
+      choices: []
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // CHALLENGE 2: OPERABLE (2 minutes)
+    // ═══════════════════════════════════════════════════════════
+
+    {
+      id: 'challenge-2-operable',
+      title: '⌨️ Challenge 2: Operable',
+      text: `<div style="background: #dbeafe; padding: 1em; border-left: 3px solid #3b82f6; margin: 1em 0;">
+             <strong>Challenge 2 of 4: Operable</strong><br>
+             Current Score: <span id="score-display">[calculated]</span>/8
+             </div>
+             <p>You look at the PDF syllabus Marcus mentioned in his email. It's a scan of your printed document—text saved as an image.</p>
+             <p><strong>The Matrix:</strong> "This is Marcus's original problem. His screen reader can't read images of text. It just announces 'image, image, image.' Keyboard navigation doesn't work. Search doesn't work. It's a locked box."</p>
+             <p>"How do you fix it?"</p>`,
       choices: [
-        { text: 'Run the LMS/Office accessibility checker', next: 'r-checker' },
-        { text: 'Test on phone, tablet, and desktop', next: 'r-multi' },
-        { text: 'Fix flagged issues (missing alt, low contrast, reading order)', next: 'r-fix' },
-        { text: 'Back to menu', next: 'menu' }
+        { text: 'Convert to an accessible PDF with selectable text', next: 'o-outcome-good' },
+        { text: 'Recreate as an HTML page with real text', next: 'o-outcome-good' },
+        { text: 'Keep the scanned PDF—it looks professional', next: 'o-outcome-bad' }
       ]
     },
-    { id: 'r-checker', title: 'Use built-in checkers', text: `<p>Open the Accessibility Assistant and resolve issues by category.</p>`,
-      choices: [ { text: 'Fix issues now', next: 'r-done' }, { text: 'Ignore warnings', next: 'r-remind' } ] },
-    { id: 'r-multi', title: 'Multiple contexts', text: `<p>Try your materials with a mobile screen reader and desktop keyboard testing.</p>`,
-      choices: [ { text: 'Log issues per device and remediate', next: 'r-done' }, { text: 'Assume it\'s fine everywhere', next: 'r-remind' } ] },
-    { id: 'r-fix', title: 'Address cross-platform issues', text: `<p>Fix reading order, add alt text, ensure forms/interactive elements have labels.</p>`,
-      choices: [ { text: 'Make the fixes', next: 'r-done' }, { text: 'Defer fixes', next: 'r-remind' } ] },
-    { id: 'r-remind', title: 'Not quite there', text: `<p>Robustness ensures longevity and compatibility. Don\'t skip it.</p>`, choices: [ { text: 'Back to Robust', next: 'r-intro' }, { text: 'Menu', next: 'menu' } ] },
-    { id: 'r-done', title: 'Robust improvements made', text: `<p>Great. Your course is more durable across tech and AT.</p>`, choices: [ { text: 'More in Robust', next: 'r-intro' }, { text: 'Menu', next: 'menu' } ] }
+
+    {
+      id: 'o-outcome-good',
+      title: '✓ Marcus Can Access It!',
+      autoAdvance: 'challenge-3-understandable',
+      autoAdvanceDelay: 5000,
+      text: `<p>You recreate the syllabus with actual, selectable text.</p>
+             <div style="background: #dcfce7; border-left: 3px solid #22c55e; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix brightens.</strong><br><br>
+             <strong>✓ Impact:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li><strong>Marcus can now access your syllabus!</strong> (This was his original complaint—solved!)</li>
+             <li>Mobile students can read without endless zooming and scrolling</li>
+             <li>Students can search and copy text for studying</li>
+             </ul>
+             <strong>+2 Points</strong> <span id="score-update">[new total]</span>/8
+             </div>
+             <p><em>Moving to Challenge 3: Understandable...</em></p>`,
+      choices: []
+    },
+
+    {
+      id: 'o-outcome-bad',
+      title: '⚠ Marcus Still Can\'t Access It',
+      autoAdvance: 'challenge-3-understandable',
+      autoAdvanceDelay: 5000,
+      text: `<p>You leave the scanned PDF as-is.</p>
+             <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix dims.</strong><br><br>
+             <strong>⚠ Outcome:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li><strong>Marcus sends another email: "I still can't access the syllabus"</strong></li>
+             <li>You'll need to provide individual accommodations</li>
+             <li>This is the same barrier from his original email—unfixed</li>
+             </ul>
+             <strong>+0 Points</strong> <span id="score-update">[same total]</span>/8
+             </div>
+             <p><em>Moving to Challenge 3: Understandable...</em></p>`,
+      choices: []
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // CHALLENGE 3: UNDERSTANDABLE (2 minutes)
+    // ═══════════════════════════════════════════════════════════
+
+    {
+      id: 'challenge-3-understandable',
+      title: '💡 Challenge 3: Understandable',
+      text: `<div style="background: #dcfce7; padding: 1em; border-left: 3px solid #22c55e; margin: 1em 0;">
+             <strong>Challenge 3 of 4: Understandable</strong><br>
+             Current Score: <span id="score-display">[calculated]</span>/8
+             </div>
+             <p>You review your course links. Every link says "click here":</p>
+             <ul>
+               <li>"Click here for the syllabus"</li>
+               <li>"Click here for Week 1 readings"</li>
+               <li>"Click here to submit"</li>
+             </ul>
+             <p><strong>The Matrix:</strong> "Marcus's screen reader has a 'list all links' feature. For your course, it reads: 'Click here. Click here. Click here. Click here.' He has no idea which one is which. He has to listen to all the surrounding text to figure out where each link goes."</p>
+             <p>"How do you fix this?"</p>`,
+      choices: [
+        { text: 'Rewrite with descriptive labels: "Download Syllabus (PDF, 3 pages)"', next: 'u-outcome-good' },
+        { text: 'Use meaningful link text for all links', next: 'u-outcome-good' },
+        { text: 'Leave "click here"—it\'s standard web language', next: 'u-outcome-bad' }
+      ]
+    },
+
+    {
+      id: 'u-outcome-good',
+      title: '✓ Links Clarified',
+      autoAdvance: 'challenge-4-robust',
+      autoAdvanceDelay: 5000,
+      text: `<p>You rewrite every link with descriptive text.</p>
+             <div style="background: #dcfce7; border-left: 3px solid #22c55e; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix glows.</strong><br><br>
+             <strong>✓ Impact:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>Marcus can now scan link lists and jump directly to what he needs—10x faster navigation</li>
+             <li>All users know where links lead before clicking</li>
+             <li>Better SEO and usability for everyone</li>
+             </ul>
+             <strong>+2 Points</strong> <span id="score-update">[new total]</span>/8
+             </div>
+             <p><em>Moving to final challenge: Robust...</em></p>`,
+      choices: []
+    },
+
+    {
+      id: 'u-outcome-bad',
+      title: '⚠ Links Remain Vague',
+      autoAdvance: 'challenge-4-robust',
+      autoAdvanceDelay: 5000,
+      text: `<p>You keep "click here" throughout.</p>
+             <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix dims.</strong><br><br>
+             <strong>⚠ Outcome:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>Marcus takes 3x longer to find content</li>
+             <li>All users must read surrounding text for context</li>
+             <li>Poor experience for everyone</li>
+             </ul>
+             <strong>+0 Points</strong> <span id="score-update">[same total]</span>/8
+             </div>
+             <p><em>Moving to final challenge: Robust...</em></p>`,
+      choices: []
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // CHALLENGE 4: ROBUST (2 minutes)
+    // ═══════════════════════════════════════════════════════════
+
+    {
+      id: 'challenge-4-robust',
+      title: '🔧 Challenge 4: Robust',
+      text: `<div style="background: #f3e8ff; padding: 1em; border-left: 3px solid #a855f7; margin: 1em 0;">
+             <strong>Challenge 4 of 4: Robust</strong><br>
+             Current Score: <span id="score-display">[calculated]</span>/8
+             </div>
+             <p>You test your course on your laptop—everything looks perfect. But when you check on your phone, the text is tiny, navigation is cramped, and videos don't display properly.</p>
+             <p><strong>The Matrix:</strong> "Meet Sofia and David. Sofia can't afford a laptop—she accesses everything on her phone. David sometimes uses a tablet. If your course doesn't work on mobile, you're excluding about 30% of students—and discriminating against those who can't afford fancy equipment."</p>
+             <p>"What do you do?"</p>`,
+      choices: [
+        { text: 'Test across devices and optimize for mobile, tablet, and desktop', next: 'r-outcome-good' },
+        { text: 'Make the course responsive—works on any screen size', next: 'r-outcome-good' },
+        { text: 'Students should use laptops for coursework', next: 'r-outcome-bad' }
+      ]
+    },
+
+    {
+      id: 'r-outcome-good',
+      title: '✓ Works Everywhere',
+      autoAdvance: 'completion',
+      autoAdvanceDelay: 5000,
+      text: `<p>You optimize the course for all devices.</p>
+             <div style="background: #dcfce7; border-left: 3px solid #22c55e; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix glows brightly.</strong><br><br>
+             <strong>✓ Impact:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>Sofia can fully participate using her phone</li>
+             <li>David can switch between devices seamlessly</li>
+             <li>Works on older/budget devices</li>
+             <li>Future-proofed for new technologies</li>
+             </ul>
+             <strong>+2 Points</strong> <span id="score-update">[new total]</span>/8
+             </div>
+             <p><em>Calculating your impact...</em></p>`,
+      choices: []
+    },
+
+    {
+      id: 'r-outcome-bad',
+      title: '⚠ Mobile Excluded',
+      autoAdvance: 'completion',
+      autoAdvanceDelay: 5000,
+      text: `<p>You require laptop access for the course.</p>
+             <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 1em; margin: 1em 0;">
+             <strong>The Matrix dims.</strong><br><br>
+             <strong>⚠ Outcome:</strong>
+             <ul style="margin: 0.5em 0;">
+             <li>30% of students can't fully participate</li>
+             <li>Disproportionately affects lower-income students</li>
+             <li>Creates equity barrier in addition to accessibility barrier</li>
+             </ul>
+             <strong>+0 Points</strong> <span id="score-update">[same total]</span>/8
+             </div>
+             <p><em>Calculating your impact...</em></p>`,
+      choices: []
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // COMPLETION (2-3 minutes)
+    // ═══════════════════════════════════════════════════════════
+
+    {
+      id: 'completion',
+      title: 'Your Impact',
+      text: `<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5em; border-radius: 8px; margin: 1em 0; text-align: center;">
+             <h2 style="margin-top: 0;">🏆 Assessment Complete</h2>
+             <p style="font-size: 1.5em; margin: 0.5em 0;"><strong>Final Score: <span id="final-score">[calculated]</span>/8</strong></p>
+             </div>
+             
+             <div style="background: #dcfce7; border: 2px solid #22c55e; padding: 1.5em; margin: 1em 0;">
+             <h3 style="margin-top: 0;">Students You've Helped</h3>
+             <p><strong>✓ Marcus</strong> (screen reader user) - Can now access your PDFs and navigate by links<br>
+             <strong>✓ Aisha</strong> (deaf) - Can follow your video lectures<br>
+             <strong>✓ Jennifer</strong> (colorblind) - Can distinguish information<br>
+             <strong>✓ David</strong> (motor disability) - Can access on any device<br>
+             <strong>✓ Sofia</strong> (uses mobile) - Can fully participate on her phone</p>
+             
+             <p style="margin-top: 1em;"><strong>Plus:</strong> Non-native speakers, students in noisy environments, students with slow internet, and everyone who benefits from clearer content.</p>
+             </div>
+             
+             <div style="background: #f0f9ff; border-left: 3px solid #3b82f6; padding: 1em; margin: 1em 0;">
+             <h3>The Four Principles (POUR)</h3>
+             <p>In just 15 minutes, you experienced the four key principles of digital accessibility:</p>
+             <ul>
+               <li><strong>Perceivable</strong> - Captions for Aisha ✓</li>
+               <li><strong>Operable</strong> - Real text for Marcus ✓</li>
+               <li><strong>Understandable</strong> - Clear links for navigation ✓</li>
+               <li><strong>Robust</strong> - Mobile access for Sofia ✓</li>
+             </ul>
+             </div>`,
+      choices: [
+        { text: 'Show me next steps', next: 'next-steps' }
+      ]
+    },
+
+    {
+      id: 'next-steps',
+      title: 'Your Action Plan',
+      text: `<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5em; border-radius: 8px; margin: 1em 0;">
+             <p style="margin: 0;"><strong>The Matrix:</strong></p>
+             <p style="margin: 0.5em 0 0 0;">"These four fixes—captions, accessible documents, clear links, mobile optimization—cover 80% of accessibility barriers with 20% of the effort. You now know what matters most."</p>
+             </div>
+             
+             <h3>Apply This Today:</h3>
+             <ol>
+               <li><strong>Fix Marcus's problem:</strong> Convert one scanned PDF to accessible text</li>
+               <li><strong>Help Aisha:</strong> Add captions to one key video</li>
+               <li><strong>Quick win:</strong> Fix "click here" links in one module</li>
+               <li><strong>Test:</strong> Open your course on your phone—what breaks?</li>
+             </ol>
+             
+             <h3>Continue Learning:</h3>
+             <ul>
+               <li><strong>Run your LMS accessibility checker</strong> to find more issues</li>
+               <li><strong>Test with keyboard only</strong> (use Tab key—no mouse)</li>
+               <li><strong>Explore the full version</strong> with 8 more challenges (45 min)</li>
+               <li><strong>Share what you learned</strong> with colleagues</li>
+             </ul>
+             
+             <div style="background: #dcfce7; border-left: 3px solid #22c55e; padding: 1em; margin: 1em 0;">
+             <strong>Remember:</strong> Every accessibility improvement you make helps more students than you realize. The students who benefit most often never tell you—they just succeed more easily.
+             </div>
+             
+             <div style="text-align: center; margin: 2em 0;">
+             <p><strong>🎓 Digital Accessibility Matrix: Foundation Complete</strong></p>
+             <p><em>You're now equipped to create more inclusive learning experiences.</em></p>
+             </div>`,
+      choices: [
+        { text: 'Restart to explore different choices', next: 'opening' }
+      ]
+    }
   ]
 };

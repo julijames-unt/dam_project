@@ -68,3 +68,110 @@ main{ padding-block: 1.25rem; }
 .choices{ display:grid; gap:.75rem; margin-top:1rem; }
 
 .footer{ color: var(--muted); font-size: .95rem; display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:.75rem 0 1.5rem; }
+
+/* ============================================
+   FEEDBACK BOXES (Microcredential Styling)
+   ============================================ */
+
+/* Success/positive feedback */
+div[style*="background: #dcfce7"] {
+  background: #dcfce7 !important;
+  border-left: 3px solid #22c55e;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Warning/negative feedback */
+div[style*="background: #fef2f2"] {
+  background: #fef2f2 !important;
+  border-left: 3px solid #ef4444;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Matrix dialogue */
+div[style*="background: linear-gradient(135deg, #667eea"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white;
+  padding: 1.5em;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+/* Info boxes */
+div[style*="background: #f0f9ff"] {
+  background: #f0f9ff !important;
+  border-left: 3px solid #3b82f6;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Challenge header (Perceivable) */
+div[style*="background: #fef3c7"] {
+  background: #fef3c7 !important;
+  border-left: 3px solid #f59e0b;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Challenge header (Operable) */
+div[style*="background: #dbeafe"] {
+  background: #dbeafe !important;
+  border-left: 3px solid #3b82f6;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Challenge header (Robust) */
+div[style*="background: #f3e8ff"] {
+  background: #f3e8ff !important;
+  border-left: 3px solid #a855f7;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Countdown timer */
+.countdown {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 1em;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Email blockquote styling */
+blockquote {
+  border-left: 3px solid #666;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  background: #f9fafb;
+  padding: 1em;
+  border-radius: 4px;
+}
+
+/* Ensure list styling is clear */
+blockquote ul, 
+div[style*="background: #dcfce7"] ul,
+div[style*="background: #fef2f2"] ul {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+blockquote li,
+div[style*="background: #dcfce7"] li,
+div[style*="background: #fef2f2"] li {
+  margin: 0.25em 0;
+}
+
