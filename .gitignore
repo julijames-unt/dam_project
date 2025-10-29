@@ -1,0 +1,17 @@
+.DS_Store
+.vscode/
+node_modules/
+.env
+*.log
+.DS_Store
+coverage/
+*.local
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+*.sublime-workspace
+
+# Build
+dist/
