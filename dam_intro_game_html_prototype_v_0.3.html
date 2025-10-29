@@ -4,78 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DAM Intro Game – Accessible Prototype</title>
-  <style>
-    /* --- Light theme defaults (high contrast toggle still available) --- */
-    :root{
-      --bg: #f8fafc;          /* slate-50 */
-      --panel: #ffffff;       /* white card */
-      --text: #0f172a;        /* slate-900 */
-      --muted: #475569;       /* slate-600 */
-      --accent: #2563eb;      /* blue-600 */
-      --accent-2: #16a34a;    /* green-600 */
-      --focus: #b45309;       /* amber-700 */
-      --border: #e2e8f0;      /* slate-200 */
-      --link: #1d4ed8;        /* blue-700 */
-      --btn: #e2e8f0;         /* slate-200 */
-      --btn-hover: #cbd5e1;   /* slate-300 */
-      --shadow: 0 2px 14px rgba(2,6,23,.06);
-      --radius: 14px;
-      --maxw: 920px;
-      --font: system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Ubuntu, "Helvetica Neue", Arial, "Noto Sans";
-    }
-
-    /* High contrast override */
-    [data-contrast="high"]{
-      --bg: #ffffff;
-      --panel: #ffffff;
-      --text: #000000;
-      --muted: #111111;
-      --accent: #0000ff;
-      --accent-2: #008000;
-      --focus: #ffbf00; /* strong amber */
-      --border: #000000;
-      --link: #0000cc;
-      --btn: #ffffff;
-      --btn-hover: #f2f2f2;
-      --shadow: none;
-    }
-
-    html, body { height: 100%; }
-    body{
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: var(--font); line-height: 1.6;
-    }
-
-    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 1rem; }
-
-    header{ position: sticky; top: 0; background: rgba(255,255,255,.9); backdrop-filter: saturate(120%) blur(6px); border-bottom: 1px solid var(--border); }
-    .bar{ display:flex; gap:.75rem; align-items:center; justify-content:space-between; }
-    .bar .brand{ font-weight: 700; letter-spacing: .2px; color: var(--text); }
-
-    .btn, .choice{
-      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.7rem 1rem; border:2px solid transparent; border-radius: var(--radius);
-      background: var(--btn); color: var(--text); cursor:pointer; box-shadow: var(--shadow);
-    }
-    .btn:hover, .choice:hover{ background: var(--btn-hover); }
-    .btn:focus-visible, .choice:focus-visible{ outline: 3px solid var(--focus); outline-offset: 2px; }
-
-    .panel{ background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
-
-    .meta{ display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; color: var(--muted); font-size: .95rem; }
-
-    .progress{ height: 10px; background: #f1f5f9; border-radius: 999px; overflow:hidden; border:1px solid var(--border); }
-    .progress>div{ height:100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; }
-
-    main{ padding-block: 1.25rem; }
-    .screen h1{ margin: 0 0 .25rem; font-size: 1.6rem; }
-    .screen p{ margin-block: .5rem; }
-    .screen a{ color: var(--link); }
-
-    .choices{ display:grid; gap:.75rem; margin-top:1rem; }
-
-    .footer{ color: var(--muted); font-size: .95rem; display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:.75rem 0 1.5rem; }
-  </style>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
   <header role="banner">
