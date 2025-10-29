@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAM Intro Game – Accessible Prototype</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header role="banner">
+    <div class="wrap bar" aria-label="Top bar">
+      <div class="brand">DAM Intro Game — Prototype</div>
+      <nav aria-label="Top controls" class="meta">
+        <button class="btn" id="contrastBtn" aria-pressed="false" title="Toggle high contrast">High Contrast</button>
+        <button class="btn" id="restartBtn">Restart</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="panel" role="region" aria-label="Game status">
+      <div class="meta">
+        <div class="progress" aria-hidden="true" style="flex:1; min-width: 160px"><div id="progressBar"></div></div>
+        <div>Use Tab to move, Enter/Space to choose, or press 1–9 to pick a choice. Press B to go back.</div>
+      </div>
+    </div>
+
+    <main id="story" class="screen panel" role="main">
+      <h1 id="sceneTitle" tabindex="-1">Loading…</h1>
+      <div id="sceneText" aria-live="polite"></div>
+      <div class="choices" id="choices" role="group" aria-label="Choices"></div>
+    </main>
+
+    <div class="footer" role="contentinfo">
+      <span>Prototype v0.3 • Keyboard-first • Screen-reader friendly</span>
+    </div>
+  </div>
+
+  <script type="module" src="./js/engine.js"></script>
+</body>
+</html>
