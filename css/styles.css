@@ -136,18 +136,17 @@ div[style*="background: #f3e8ff"] {
   border-radius: 4px;
 }
 
-/* Countdown timer */
-.countdown {
-  text-align: center;
-  font-style: italic;
-  color: #666;
-  margin-top: 1em;
-  animation: fadeIn 0.3s ease-in;
+/* Continue button - emphasize for outcome nodes */
+.continue-button {
+  font-weight: 600;
+  margin-top: 1.5em;
+  background: var(--accent-2);
+  color: white;
+  border: none;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.continue-button:hover {
+  opacity: 0.85;
 }
 
 /* Email blockquote styling */

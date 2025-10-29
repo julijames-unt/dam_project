@@ -9,7 +9,6 @@ const progressBar= $('#progressBar');
 
 // Score tracking for microcredential
 let currentScore = 0;
-let autoAdvanceTimer = null;
 
 const state = { storyId: STORY.id, nodeId: STORY.start, history: [] };
 const nodeMap = new Map(STORY.nodes.map(n => [n.id, n]));
@@ -36,21 +35,9 @@ function render(){
   sceneTitle.setAttribute('tabindex','-1');
   sceneTitle.focus({ preventScroll: true });
   
-  // Handle auto-advance if this node has it
+  // Show Continue button if this node has autoAdvance and no user choices
   if (node.autoAdvance && (!node.choices || node.choices.length === 0)) {
-    const delay = node.autoAdvanceDelay || 5000;
-    showCountdown(delay);
-    
-    // Clear any existing timer
-    if (autoAdvanceTimer) {
-      clearTimeout(autoAdvanceTimer);
-    }
-    
-    // Set new auto-advance timer
-    autoAdvanceTimer = setTimeout(() => {
-      autoAdvanceTimer = null;
-      showNode(node.autoAdvance);
-    }, delay);
+    showContinueButton(node.autoAdvance);
   }
 }
 
@@ -69,31 +56,14 @@ function displayNodeContent(node) {
   });
 }
 
-// Show countdown timer for auto-advance
-function showCountdown(delay) {
-  const seconds = Math.ceil(delay / 1000);
-  const contentArea = sceneText;
-  
-  const countdownDiv = document.createElement('div');
-  countdownDiv.id = 'auto-advance-countdown';
-  countdownDiv.className = 'countdown';
-  countdownDiv.innerHTML = `<p><em>Continuing in ${seconds} seconds...</em></p>`;
-  
-  if (contentArea) {
-    contentArea.appendChild(countdownDiv);
-  }
-  
-  // Update countdown every second
-  let remaining = seconds;
-  const interval = setInterval(() => {
-    remaining--;
-    const countdownEl = document.getElementById('auto-advance-countdown');
-    if (remaining > 0 && countdownEl) {
-      countdownEl.innerHTML = `<p><em>Continuing in ${remaining} seconds...</em></p>`;
-    } else {
-      clearInterval(interval);
-    }
-  }, 1000);
+// Show Continue button for outcome nodes
+function showContinueButton(nextNodeId) {
+  const continueBtn = document.createElement('button');
+  continueBtn.className = 'choice continue-button';
+  continueBtn.textContent = 'Continue';
+  continueBtn.setAttribute('data-key', 'Continue');
+  continueBtn.addEventListener('click', () => showNode(nextNodeId));
+  choicesEl.appendChild(continueBtn);
 }
 
 // Detect score changes in node text
@@ -126,12 +96,8 @@ function updateAllScoreDisplays() {
   }
 }
 
-// Handle user choices (cancels auto-advance)
+// Handle user choices
 function makeChoice(choice) {
-  if (autoAdvanceTimer) {
-    clearTimeout(autoAdvanceTimer);
-    autoAdvanceTimer = null;
-  }
   showNode(choice.next);
 }
 
